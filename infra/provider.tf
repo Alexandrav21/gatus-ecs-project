@@ -8,5 +8,5 @@ terraform {
 
 provider "aws" {
   region  = var.aws_region
-  profile = "gatus-ecr"
+  profile = "gatus-terraform"
 }
