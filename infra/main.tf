@@ -43,3 +43,22 @@ module "monitoring" {
   project_name       = var.project_name
   log_retention_days = 7
 }
+
+module "ecs" {
+  source = "./modules/ecs"
+
+  project_name = var.project_name
+  aws_region   = var.aws_region
+
+  repository_url = module.ecr.repository_url
+  image_tag      = "v1"
+
+  task_execution_role_arn = module.iam.ecs_task_execution_role_arn
+  task_role_arn           = module.iam.ecs_task_role_arn
+
+  public_subnet_ids     = module.vpc.public_subnet_ids
+  ecs_security_group_id = module.security_groups.ecs_security_group_id
+
+  target_group_arn = module.alb.target_group_arn
+  log_group_name   = module.monitoring.log_group_name
+}
