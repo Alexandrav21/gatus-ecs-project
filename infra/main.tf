@@ -36,3 +36,10 @@ module "alb" {
   public_subnet_ids     = module.vpc.public_subnet_ids
   alb_security_group_id = module.security_groups.alb_security_group_id
 }
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  project_name       = var.project_name
+  log_retention_days = 7
+}
