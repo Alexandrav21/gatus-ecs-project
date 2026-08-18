@@ -56,6 +56,8 @@ resource "aws_ecs_service" "main" {
 
   launch_type = "FARGATE"
 
+  enable_execute_command = true
+
   network_configuration {
     subnets          = var.public_subnet_ids
     security_groups  = [var.ecs_security_group_id]
