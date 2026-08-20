@@ -36,14 +36,33 @@ resource "aws_lb_target_group" "main" {
   }
 }
 
+# Redirect all HTTP traffic to HTTPS
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.main.arn
   port              = 80
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type = "redirect"
 
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+# Forward HTTPS traffic to the Gatus target group
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.main.arn
+  port              = 443
+  protocol          = "HTTPS"
+
+  certificate_arn = var.certificate_arn
+
+  default_action {
+    type             = "forward"
     target_group_arn = aws_lb_target_group.main.arn
   }
 }

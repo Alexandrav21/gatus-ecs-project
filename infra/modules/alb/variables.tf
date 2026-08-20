@@ -17,3 +17,8 @@ variable "alb_security_group_id" {
   description = "Security group attached to the ALB"
   type        = string
 }
+
+variable "certificate_arn" {
+  description = "ARN of the ACM certificate used by the HTTPS listener"
+  type        = string
+}
