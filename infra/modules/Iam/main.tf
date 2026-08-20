@@ -50,3 +50,22 @@ resource "aws_iam_role" "ecs_task" {
     Name = "${var.project_name}-ecs-task-role"
   }
 }
+
+resource "aws_iam_role_policy" "gatus_sns" {
+  name = "${var.project_name}-sns-publish"
+  role = aws_iam_role.ecs_task.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "sns:Publish"
+        ]
+        Resource = var.sns_topic_arn
+      }
+    ]
+  })
+}

@@ -19,7 +19,8 @@ module "security_groups" {
 module "iam" {
   source = "./modules/iam"
 
-  project_name = var.project_name
+  project_name  = var.project_name
+  sns_topic_arn = module.alerting.sns_topic_arn
 }
 
 module "ecr" {
@@ -87,4 +88,17 @@ module "route53" {
 
   alb_dns_name = module.alb.alb_dns_name
   alb_zone_id  = module.alb.alb_zone_id
+}
+
+variable "notification_email" {
+  description = "Email address used for Gatus SNS alerts"
+  type        = string
+  sensitive   = true
+}
+
+module "alerting" {
+  source = "./modules/alerting"
+
+  project_name       = var.project_name
+  notification_email = var.notification_email
 }
