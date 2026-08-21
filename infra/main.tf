@@ -19,8 +19,9 @@ module "security_groups" {
 module "iam" {
   source = "./modules/iam"
 
-  project_name  = var.project_name
-  sns_topic_arn = module.alerting.sns_topic_arn
+  project_name      = var.project_name
+  sns_topic_arn     = module.alerting.sns_topic_arn
+  sns_parameter_arn = module.alerting.sns_parameter_arn
 }
 
 module "ecr" {
@@ -76,8 +77,9 @@ module "ecs" {
   public_subnet_ids     = module.vpc.public_subnet_ids
   ecs_security_group_id = module.security_groups.ecs_security_group_id
 
-  target_group_arn = module.alb.target_group_arn
-  log_group_name   = module.monitoring.log_group_name
+  target_group_arn  = module.alb.target_group_arn
+  log_group_name    = module.monitoring.log_group_name
+  sns_parameter_arn = module.alerting.sns_parameter_arn
 }
 
 module "route53" {
@@ -90,11 +92,6 @@ module "route53" {
   alb_zone_id  = module.alb.alb_zone_id
 }
 
-variable "notification_email" {
-  description = "Email address used for Gatus SNS alerts"
-  type        = string
-  sensitive   = true
-}
 
 module "alerting" {
   source = "./modules/alerting"

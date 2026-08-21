@@ -35,3 +35,9 @@ variable "availability_zones" {
     "eu-west-2b"
   ]
 }
+
+variable "notification_email" {
+  description = "Email address used for Gatus SNS alerts"
+  type        = string
+  sensitive   = true
+}

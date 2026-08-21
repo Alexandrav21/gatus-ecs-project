@@ -47,3 +47,8 @@ variable "log_group_name" {
   description = "CloudWatch log group used by the container"
   type        = string
 }
+
+variable "sns_parameter_arn" {
+  description = "ARN of the SSM parameter containing the SNS topic ARN"
+  type        = string
+}

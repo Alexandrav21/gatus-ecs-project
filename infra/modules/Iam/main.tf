@@ -69,3 +69,22 @@ resource "aws_iam_role_policy" "gatus_sns" {
     ]
   })
 }
+
+resource "aws_iam_role_policy" "ssm_parameter_access" {
+  name = "${var.project_name}-ssm-parameter-access"
+  role = aws_iam_role.ecs_task_execution.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "ssm:GetParameters"
+        ]
+        Resource = var.sns_parameter_arn
+      }
+    ]
+  })
+}
