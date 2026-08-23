@@ -41,3 +41,10 @@ variable "notification_email" {
   type        = string
   sensitive   = true
 }
+
+variable "github_oidc_subject" {
+  description = "GitHub OIDC subject allowed to assume the AWS deployment role"
+  type        = string
+
+  default = "repo:Alexandrav21@122618599/gatus-ecs-project@1336304199:ref:refs/heads/main"
+}

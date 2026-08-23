@@ -19,7 +19,8 @@ module "security_groups" {
 module "iam" {
   source = "./modules/iam"
 
-  project_name = var.project_name
+  project_name        = var.project_name
+  github_oidc_subject = var.github_oidc_subject
 }
 
 module "ecr" {
