@@ -19,9 +19,7 @@ module "security_groups" {
 module "iam" {
   source = "./modules/iam"
 
-  project_name      = var.project_name
-  sns_topic_arn     = module.alerting.sns_topic_arn
-  sns_parameter_arn = module.alerting.sns_parameter_arn
+  project_name = var.project_name
 }
 
 module "ecr" {
@@ -69,7 +67,7 @@ module "ecs" {
   aws_region   = var.aws_region
 
   repository_url = module.ecr.repository_url
-  image_tag      = "v1"
+  image_tag      = "sns-alerting"
 
   task_execution_role_arn = module.iam.ecs_task_execution_role_arn
   task_role_arn           = module.iam.ecs_task_role_arn
@@ -77,9 +75,8 @@ module "ecs" {
   public_subnet_ids     = module.vpc.public_subnet_ids
   ecs_security_group_id = module.security_groups.ecs_security_group_id
 
-  target_group_arn  = module.alb.target_group_arn
-  log_group_name    = module.monitoring.log_group_name
-  sns_parameter_arn = module.alerting.sns_parameter_arn
+  target_group_arn = module.alb.target_group_arn
+  log_group_name   = module.monitoring.log_group_name
 }
 
 module "route53" {

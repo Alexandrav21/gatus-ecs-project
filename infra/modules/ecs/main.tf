@@ -23,13 +23,6 @@ resource "aws_ecs_task_definition" "main" {
       image     = "${var.repository_url}:${var.image_tag}"
       essential = true
 
-      secrets = [
-        {
-          name      = "GATUS_SNS_TOPIC_ARN"
-          valueFrom = var.sns_parameter_arn
-        }
-      ]
-
       portMappings = [
         {
           containerPort = 8080
