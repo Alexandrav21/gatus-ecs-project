@@ -67,7 +67,7 @@ module "ecs" {
   aws_region   = var.aws_region
 
   repository_url = module.ecr.repository_url
-  image_tag      = "sns-alerting"
+  image_tag      = "clean"
 
   task_execution_role_arn = module.iam.ecs_task_execution_role_arn
   task_role_arn           = module.iam.ecs_task_role_arn
@@ -95,4 +95,15 @@ module "alerting" {
 
   project_name       = var.project_name
   notification_email = var.notification_email
+}
+
+module "alarms" {
+  source = "./modules/alarms"
+
+  project_name = var.project_name
+
+  cluster_name = module.ecs.cluster_name
+  service_name = module.ecs.service_name
+
+  sns_topic_arn = module.alerting.sns_topic_arn
 }
