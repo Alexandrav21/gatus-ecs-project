@@ -5,9 +5,8 @@ on:
     branches:
       - main
     paths:
-      - "Dockerfile"
+      - "GatusApp/**"
       - ".dockerignore"
-      - "config.yaml"
       - ".github/workflows/build.yml"
 
   workflow_dispatch:
@@ -24,17 +23,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check build context
-        run: |
-          echo "Repository root:"
-          pwd
-
-          echo "Files:"
-          ls -la
-
-          echo "Config check:"
-          test -f config.yaml && echo "config.yaml found" || echo "config.yaml MISSING"
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
@@ -48,6 +36,7 @@ jobs:
       - name: Build image
         run: |
           docker build \
+            -f GatusApp/Dockerfile \
             -t ${{ steps.ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }} \
             .
 
