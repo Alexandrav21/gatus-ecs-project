@@ -24,6 +24,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check build context
+        run: |
+          echo "Repository root:"
+          pwd
+
+          echo "Files:"
+          ls -la
+
+          echo "Config check:"
+          test -f config.yaml && echo "config.yaml found" || echo "config.yaml MISSING"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
