@@ -1,0 +1,53 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Type DESTROY to confirm infrastructure teardown'
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  destroy:
+    name: Destroy Infrastructure
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event.inputs.confirmation == 'DESTROY' }}
+
+    defaults:
+      run:
+        working-directory: infra
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Destroy Plan
+        env:
+          TF_VAR_notification_email: ${{ secrets.NOTIFICATION_EMAIL }}
+        run: terraform plan -destroy -no-color -out=destroy.tfplan
+
+      - name: Terraform Destroy
+        env:
+          TF_VAR_notification_email: ${{ secrets.NOTIFICATION_EMAIL }}
+        run: terraform apply -auto-approve destroy.tfplan
