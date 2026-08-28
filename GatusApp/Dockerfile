@@ -1,4 +1,4 @@
-FROM twinproduction/gatus:v5.36.0
+FROM twinproduction/gatus:latest
 
 COPY GatusApp/config/config.yaml /config/config.yaml
 
