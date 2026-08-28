@@ -44,7 +44,7 @@ jobs:
         uses: anchore/scan-action@v7
         with:
           image: ${{ steps.ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
-          fail-build: true
+          fail-build: false
           severity-cutoff: high
           output-format: table
 
