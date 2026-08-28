@@ -46,6 +46,7 @@ jobs:
           image: ${{ steps.ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
           fail-build: true
           severity-cutoff: high
+          output-format: table
 
       - name: Push image
         run: |
