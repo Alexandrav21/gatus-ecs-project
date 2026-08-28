@@ -70,6 +70,12 @@ resource "aws_ecs_service" "main" {
     container_port   = 8080
   }
 
+  lifecycle {
+    ignore_changes = [
+      task_definition
+    ]
+  }
+
   tags = {
     Name = "${var.project_name}-service"
   }
