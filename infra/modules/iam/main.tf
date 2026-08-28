@@ -167,6 +167,16 @@ resource "aws_iam_role_policy" "github_project_iam" {
         ]
 
         Resource = "arn:aws:iam::*:role/${var.project_name}-*"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "iam:ListOpenIDConnectProviders",
+          "iam:GetOpenIDConnectProvider"
+        ]
+
+        Resource = "*"
       }
     ]
   })
