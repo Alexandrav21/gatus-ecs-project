@@ -1,22 +1,24 @@
+# Git and GitHub
 .git
 .github
-.examples
+
+# IDE
 .idea
 .vscode
 
+# Local files
 *.db
 *.log
-*.tfstate
-*.tfstate.*
-
 .env
 .env.*
 
+# Terraform
 infra/
-testdata/
-web/app/
+*.tfstate
+*.tfstate.*
 
-Dockerfile
-Dockerfile.*
-docker-compose*.yml
+# Documentation
 README.md
+
+# Local Docker files
+docker-compose*.yml

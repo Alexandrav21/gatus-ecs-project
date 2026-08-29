@@ -1,27 +1,37 @@
 # IDE
 *.iml
-.idea
-.vscode
+.idea/
+
+# Ignore VS Code workspace files except shared project settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # OS
 .DS_Store
+Thumbs.db
 
-# JS
-node_modules
+# Dependencies
+node_modules/
+vendor/
 
-# Go
-/vendor
-
-# Misc
+# Local application files
 *.db
 *.db-shm
 *.db-wal
 gatus
-config/config.yml
-config.yaml
 
+# Environment files
+.env
+.env.*
 
 # Terraform
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+*.tfplan
+.terraform.tfstate.lock.info
+
+# Terraform crash logs
+crash.log
+crash.*.log

@@ -1,0 +1,18 @@
+{
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true
+  },
+
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true
+  },
+
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.formatOnSave": true
+  },
+
+  "editor.formatOnSave": true
+}
