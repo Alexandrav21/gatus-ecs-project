@@ -48,7 +48,7 @@ automated application and infrastructure deployments.
 
 ## Architecture
 
-> **Architecture diagram will be added here:** `assets/architecture/gatus-aws-architecture.png`
+![ECS Gatus Architecture](assets/architecture/ecs-gatus-architecture.png)
 
 The application runs on ECS Fargate across two public subnets and is
 exposed through an Application Load Balancer, with Route 53 and ACM
