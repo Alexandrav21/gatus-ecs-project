@@ -606,17 +606,14 @@ terraform apply
 
 ## Release
 
-The completed V1 implementation will be published as:
+The completed V1 implementation is published as:
 
 > **`v1.0.0` → End-to-end Gatus deployment on AWS ECS Fargate**
 
-The release represents the review-ready version of the project,
-including Terraform-managed infrastructure, HTTPS, monitoring and
-alerting, secure OIDC authentication, application and infrastructure
-CI/CD, SHA-tagged ECS deployments, vulnerability scanning and protected
-infrastructure teardown.
+This release marks the **review-ready version of the project**, bringing together the complete end-to-end implementation: Terraform-managed AWS infrastructure, HTTPS, monitoring and alerting, secure OIDC authentication, application and infrastructure CI/CD, Git SHA-tagged ECS deployments, container vulnerability scanning, and protected infrastructure teardown.
 
-> **GitHub Release link will be added here**
+With V1 complete, any future features, fixes or improvements will be developed through the protected branch and pull request workflow rather than pushed directly to `main`.
+
 
 ## Future Improvements
 
