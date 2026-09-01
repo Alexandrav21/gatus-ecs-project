@@ -46,6 +46,14 @@ The project covers containerisation, networking, HTTPS, monitoring and
 alerting, infrastructure as code, secure AWS authentication and
 automated application and infrastructure deployments.
 
+## Why Gatus and ECS?
+
+**Gatus** is a lightweight, open-source health monitoring application that regularly checks endpoints and displays their status. I chose it because it is container-friendly and requires outbound connectivity, making it a good fit for this ECS project.
+
+I chose **ECS Fargate** over a traditional VM to avoid managing the underlying server while still having control over containers, networking, IAM, load balancing and monitoring. A platform such as Vercel or Netlify would abstract away many of the AWS components I specifically wanted to implement.
+
+The expected traffic is very low, so one Fargate task is sufficient. If usage increased, the architecture could be extended with ECS Service Auto Scaling.
+
 ### Live Application
 
 🌐 **[View Gatus running on AWS ECS Fargate](https://gatus.labs.alexandravladu.co.uk/)**
