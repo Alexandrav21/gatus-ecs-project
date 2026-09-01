@@ -46,6 +46,10 @@ The project covers containerisation, networking, HTTPS, monitoring and
 alerting, infrastructure as code, secure AWS authentication and
 automated application and infrastructure deployments.
 
+### Live Application
+
+🌐 **[View Gatus running on AWS ECS Fargate](https://gatus.labs.alexandravladu.co.uk/)**
+
 ## Architecture
 
 ![ECS Gatus Architecture](assets/architecture/ecs-gatus-architecture.png)
